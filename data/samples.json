@@ -1,0 +1,65 @@
+{
+  "description": "Sample Hindi-English code-mixed sentences for testing and evaluation",
+  "samples": [
+    {
+      "text": "yaar ye movie bahut amazing thi",
+      "expected_sentiment": "positive",
+      "context": "Movie review — positive"
+    },
+    {
+      "text": "kya bakwas movie thi, waste of time",
+      "expected_sentiment": "negative",
+      "context": "Movie review — negative"
+    },
+    {
+      "text": "kal exam hai aur mujhe kuch nahi aata",
+      "expected_sentiment": "negative",
+      "context": "Student stress"
+    },
+    {
+      "text": "bhai party mein bahut maza aaya, awesome food tha",
+      "expected_sentiment": "positive",
+      "context": "Social event"
+    },
+    {
+      "text": "aaj ka weather bahut pleasant hai, perfect for outing",
+      "expected_sentiment": "positive",
+      "context": "Weather"
+    },
+    {
+      "text": "ye new phone ka camera quality ekdum shandar hai",
+      "expected_sentiment": "positive",
+      "context": "Product review"
+    },
+    {
+      "text": "traffic itna horrible hai ki office late pahunch gaya",
+      "expected_sentiment": "negative",
+      "context": "Daily commute frustration"
+    },
+    {
+      "text": "mera result aa gaya, bahut khushi hui all subjects clear",
+      "expected_sentiment": "positive",
+      "context": "Academic result"
+    },
+    {
+      "text": "is restaurant ka service ekdum pathetic hai never coming back",
+      "expected_sentiment": "negative",
+      "context": "Restaurant review"
+    },
+    {
+      "text": "coding seekh raha hoon, Python bahut interesting language hai",
+      "expected_sentiment": "positive",
+      "context": "Learning programming"
+    },
+    {
+      "text": "aaj bohot thak gaya office mein bahut kaam tha",
+      "expected_sentiment": "neutral",
+      "context": "Work fatigue"
+    },
+    {
+      "text": "mere dost ki shaadi mein gaya tha, function bahut grand tha",
+      "expected_sentiment": "positive",
+      "context": "Wedding experience"
+    }
+  ]
+}
