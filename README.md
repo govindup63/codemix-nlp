@@ -10,20 +10,20 @@
 </p>
 
 <p align="center">
-  NLP toolkit for analyzing Hindi-English code-mixed text. Handles the unique challenges of <strong>code-switching</strong> — where speakers alternate between Hindi (often Romanized) and English within a sentence, as commonly seen in Indian social media, messaging, and spoken language.
+  NLP toolkit for analyzing Hindi-English code-mixed text. Handles the unique challenges of <strong>code-switching</strong> - where speakers alternate between Hindi (often Romanized) and English within a sentence, as commonly seen in Indian social media, messaging, and spoken language.
 </p>
 
 ---
 
 ## Features
 
-- **Word-level Language Identification** — Character n-gram frequency profiles distinguish Romanized Hindi from English (based on Cavnar & Trenkle, 1994)
-- **Romanized Hindi → Devanagari Transliteration** — Rule-based phonetic mapping with support for aspirated consonants, vowel matras, and schwa deletion
-- **Bilingual Sentiment Analysis** — Lexicon-based (lightweight) and transformer-based (XLM-RoBERTa) approaches
-- **Text Normalization** — Handles character repetition, slang expansion, and mixed-script cleanup
-- **Code-Mixing Index (CMI)** — Quantifies the degree of language mixing in a sentence
-- **REST API** — FastAPI server for all features
-- **CLI** — Command-line tool for quick analysis
+- **Word-level Language Identification** - Character n-gram frequency profiles distinguish Romanized Hindi from English (based on Cavnar & Trenkle, 1994)
+- **Romanized Hindi → Devanagari Transliteration** - Rule-based phonetic mapping with support for aspirated consonants, vowel matras, and schwa deletion
+- **Bilingual Sentiment Analysis** - Lexicon-based (lightweight) and transformer-based (XLM-RoBERTa) approaches
+- **Text Normalization** - Handles character repetition, slang expansion, and mixed-script cleanup
+- **Code-Mixing Index (CMI)** - Quantifies the degree of language mixing in a sentence
+- **REST API** - FastAPI server for all features
+- **CLI** - Command-line tool for quick analysis
 
 ## Installation
 
@@ -154,8 +154,8 @@ Total: 46 | Correct: 40 | Accuracy: 87.0%
 ### Language Identification (`codemix.lang_id`)
 
 Two-stage approach:
-1. **Script detection** — Unicode range checks separate Devanagari from Latin script
-2. **N-gram classification** — For Latin-script words, character n-gram frequency profiles distinguish Romanized Hindi from English using cosine similarity
+1. **Script detection** - Unicode range checks separate Devanagari from Latin script
+2. **N-gram classification** - For Latin-script words, character n-gram frequency profiles distinguish Romanized Hindi from English using cosine similarity
 
 ```python
 from codemix.lang_id import create_default_detector
@@ -223,7 +223,7 @@ codemix-nlp/
 
 ## Motivation
 
-Code-mixing is a natural phenomenon in multilingual societies like India, where speakers frequently alternate between Hindi and English. Most NLP tools are designed for monolingual text and perform poorly on code-mixed input. This toolkit addresses that gap with lightweight, practical tools for processing Hindi-English code-mixed text — a step toward better NLP support for Indian languages.
+Code-mixing is a natural phenomenon in multilingual societies like India, where speakers frequently alternate between Hindi and English. Most NLP tools are designed for monolingual text and perform poorly on code-mixed input. This toolkit addresses that gap with lightweight, practical tools for processing Hindi-English code-mixed text - a step toward better NLP support for Indian languages.
 
 ## References
 
@@ -238,4 +238,4 @@ Contributions are welcome! Feel free to open issues or submit pull requests.
 
 ## License
 
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
