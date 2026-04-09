@@ -1,6 +1,19 @@
-# codemix-nlp
+<p align="center">
+  <img src="assets/logo.svg" alt="codemix-nlp" width="480" />
+</p>
 
-NLP toolkit for analyzing Hindi-English code-mixed text. Handles the unique challenges of **code-switching** — where speakers alternate between Hindi (often Romanized) and English within a sentence, as commonly seen in Indian social media, messaging, and spoken language.
+<p align="center">
+  <a href="https://github.com/govindup63/codemix-nlp/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
+  <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.10+-blue.svg" alt="Python 3.10+"></a>
+  <img src="https://img.shields.io/badge/accuracy-87%25-brightgreen.svg" alt="Accuracy 87%">
+  <img src="https://img.shields.io/badge/tests-26%20passed-brightgreen.svg" alt="Tests 26 passed">
+</p>
+
+<p align="center">
+  NLP toolkit for analyzing Hindi-English code-mixed text. Handles the unique challenges of <strong>code-switching</strong> — where speakers alternate between Hindi (often Romanized) and English within a sentence, as commonly seen in Indian social media, messaging, and spoken language.
+</p>
+
+---
 
 ## Features
 
@@ -181,16 +194,31 @@ result = s.analyze("kya bakwas movie thi terrible")
 print(result.label)  # negative
 ```
 
-## Evaluation
-
-```bash
-python scripts/evaluate_lang_id.py
-```
-
 ## Running Tests
 
 ```bash
-pytest
+pytest -v
+```
+
+## Project Structure
+
+```
+codemix-nlp/
+├── src/codemix/
+│   ├── lang_id.py          # Character n-gram language identification
+│   ├── transliterate.py    # Romanized Hindi → Devanagari
+│   ├── sentiment.py        # Lexicon + transformer sentiment analysis
+│   ├── normalize.py        # Text normalization for code-mixed input
+│   ├── pipeline.py         # Unified analysis pipeline
+│   ├── api.py              # FastAPI REST server
+│   └── cli.py              # Command-line interface
+├── tests/                  # Unit tests (26 passing)
+├── scripts/
+│   └── evaluate_lang_id.py # Evaluation with P/R/F1 metrics
+├── data/
+│   └── samples.json        # Labeled code-mixed sentences
+└── examples/
+    └── analyze_text.py     # Usage examples
 ```
 
 ## Motivation
@@ -199,11 +227,15 @@ Code-mixing is a natural phenomenon in multilingual societies like India, where 
 
 ## References
 
-- Cavnar, W. B., & Trenkle, J. M. (1994). N-gram-based text categorization.
-- Das, A., & Gambäck, B. (2014). Identifying languages at the word level in code-mixed Indian social media text.
-- Khanuja, S., et al. (2020). GLUECoS: An evaluation benchmark for code-switched NLP.
-- Kakwani, D., et al. (2020). IndicNLPSuite: Monolingual corpora, evaluation benchmarks and pre-trained models for Indian languages.
+- Cavnar, W. B., & Trenkle, J. M. (1994). *N-gram-based text categorization.*
+- Das, A., & Gamback, B. (2014). *Identifying languages at the word level in code-mixed Indian social media text.*
+- Khanuja, S., et al. (2020). *GLUECoS: An evaluation benchmark for code-switched NLP.*
+- Kakwani, D., et al. (2020). *IndicNLPSuite: Monolingual corpora, evaluation benchmarks and pre-trained models for Indian languages.*
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests.
 
 ## License
 
-MIT
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.

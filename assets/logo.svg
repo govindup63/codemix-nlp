@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 120">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e94560;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5a623;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="text-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0f3460;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#533483;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background rounded rect -->
+  <rect x="0" y="0" width="480" height="120" rx="16" ry="16" fill="url(#bg)" />
+
+  <!-- Accent bar at top -->
+  <rect x="0" y="0" width="480" height="4" rx="2" fill="url(#accent)" />
+
+  <!-- Icon: two overlapping speech bubbles representing code-mixing -->
+  <g transform="translate(24, 22)">
+    <!-- Left bubble (Hindi) -->
+    <rect x="0" y="0" width="38" height="30" rx="8" fill="#e94560" opacity="0.9"/>
+    <text x="19" y="22" text-anchor="middle" fill="white" font-family="serif" font-size="16" font-weight="bold">हि</text>
+    <polygon points="8,30 14,40 18,30" fill="#e94560" opacity="0.9"/>
+
+    <!-- Right bubble (English) -->
+    <rect x="22" y="16" width="38" height="30" rx="8" fill="#f5a623" opacity="0.9"/>
+    <text x="41" y="38" text-anchor="middle" fill="white" font-family="sans-serif" font-size="14" font-weight="bold">En</text>
+    <polygon points="42,46 48,56 52,46" fill="#f5a623" opacity="0.9"/>
+
+    <!-- Connecting dots -->
+    <circle cx="30" cy="68" r="2.5" fill="#e94560" opacity="0.6"/>
+    <circle cx="38" cy="68" r="2.5" fill="#f5a623" opacity="0.6"/>
+    <circle cx="34" cy="74" r="2.5" fill="white" opacity="0.4"/>
+  </g>
+
+  <!-- Main title -->
+  <text x="100" y="52" fill="white" font-family="'SF Mono', 'Fira Code', monospace" font-size="32" font-weight="bold" letter-spacing="-0.5">
+    code<tspan fill="#e94560">mix</tspan><tspan fill="#666" font-size="20">-nlp</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text x="100" y="78" fill="#8892b0" font-family="'Inter', 'Helvetica Neue', sans-serif" font-size="13">
+    Hindi-English Code-Mixed Text Analysis Toolkit
+  </text>
+
+  <!-- Feature pills -->
+  <g transform="translate(100, 88)">
+    <rect x="0" y="0" width="68" height="20" rx="10" fill="#e94560" opacity="0.15"/>
+    <text x="34" y="14" text-anchor="middle" fill="#e94560" font-family="sans-serif" font-size="9" font-weight="600">Lang ID</text>
+
+    <rect x="76" y="0" width="88" height="20" rx="10" fill="#f5a623" opacity="0.15"/>
+    <text x="120" y="14" text-anchor="middle" fill="#f5a623" font-family="sans-serif" font-size="9" font-weight="600">Transliterate</text>
+
+    <rect x="172" y="0" width="72" height="20" rx="10" fill="#48bfe3" opacity="0.15"/>
+    <text x="208" y="14" text-anchor="middle" fill="#48bfe3" font-family="sans-serif" font-size="9" font-weight="600">Sentiment</text>
+
+    <rect x="252" y="0" width="48" height="20" rx="10" fill="#7b2ff7" opacity="0.15"/>
+    <text x="276" y="14" text-anchor="middle" fill="#7b2ff7" font-family="sans-serif" font-size="9" font-weight="600">API</text>
+  </g>
+</svg>
