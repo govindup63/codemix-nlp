@@ -66,6 +66,76 @@ curl -X POST http://localhost:8000/detect-language \
   -d '{"text": "bhai aaj ka match dekha? India ne accha khela"}'
 ```
 
+## CLI Examples
+
+```bash
+$ codemix "yaar ye movie bahut amazing thi"
+
+  Input:      yaar ye movie bahut amazing thi
+  Normalized: yaar ye movie bahut amazing thi
+
+  Word-level language tags:
+    yaar            [hi]     (conf: 0.20)
+    ye              [en]     (conf: 0.16)
+    movie           [en]     (conf: 0.11)
+    bahut           [hi]     (conf: 0.11)
+    amazing         [en]     (conf: 0.10)
+    thi             [en]     (conf: 0.11)
+
+  Sentiment:  positive (score: +1.00)
+
+  Hindi words → Devanagari:
+    yaar            → यार
+    bahut           → बहुत
+
+  Stats: 2 Hindi, 4 English, 0 other | CMI: 0.33
+```
+
+JSON output for programmatic use:
+
+```bash
+$ codemix --json "ye gaana sunke bahut happy feel hua"
+{
+  "original": "ye gaana sunke bahut happy feel hua",
+  "tagged_words": [
+    {"word": "ye", "lang": "en", "confidence": 0.1624},
+    {"word": "gaana", "lang": "hi", "confidence": 0.3066},
+    {"word": "sunke", "lang": "en", "confidence": 0.1546},
+    {"word": "bahut", "lang": "hi", "confidence": 0.1145},
+    {"word": "happy", "lang": "en", "confidence": 0.0887},
+    {"word": "feel", "lang": "en", "confidence": 0.0776},
+    {"word": "hua", "lang": "hi", "confidence": 0.1979}
+  ],
+  "sentiment": {"label": "positive", "score": 1.0},
+  "transliterations": [
+    {"original": "gaana", "devanagari": "गान"},
+    {"original": "bahut", "devanagari": "बहुत"},
+    {"original": "hua", "devanagari": "हुअ"}
+  ],
+  "stats": {
+    "total_words": 7, "hindi_words": 3, "english_words": 4,
+    "other": 0, "code_mixing_index": 0.4286
+  }
+}
+```
+
+Pipe from stdin:
+
+```bash
+$ echo "bhai tu tension mat le, sab theek ho jayega" | codemix --stdin
+```
+
+## Language ID Evaluation
+
+```
+$ python scripts/evaluate_lang_id.py
+
+Total: 46 | Correct: 40 | Accuracy: 87.0%
+
+   HI: P=0.95  R=0.78  F1=0.86
+   EN: P=0.81  R=0.96  F1=0.88
+```
+
 ## Modules
 
 ### Language Identification (`codemix.lang_id`)
