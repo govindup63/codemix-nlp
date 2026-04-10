@@ -10,12 +10,16 @@ from codemix.pipeline import CodeMixPipeline
 def main():
     pipeline = CodeMixPipeline()
 
+    # Iconic Bollywood Hinglish dialogues - perfect test cases for code-mixing
     samples = [
-        "yaar ye movie bahut amazing thi",
-        "kya bakwas hai ye, totally waste of time",
+        # 3 Idiots
+        "Life is a race, if you don't run fast, you will be like a broken undaa",
+        "Ajeeb desh hai hamara, pizza tees minute mein pahuchne ki guarantee hai, lekin ambulance?",
+        # Yeh Jawaani Hai Deewani
+        "Shaadi is dal chawal for pachaas saal till you die, arre life mein thoda bahut keema pav bhi hona chahiye nah",
+        # General code-mixed examples
         "bhai aaj ka match dekha? India ne bahut accha khela",
-        "mera new phone ka camera quality shandar hai, love it",
-        "traffic itna horrible hai ki har roz late ho jaata hoon",
+        "coding seekh raha hoon, Python bahut interesting language hai",
     ]
 
     for text in samples:

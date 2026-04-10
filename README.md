@@ -47,10 +47,10 @@ pip install -e ".[dev]"
 from codemix.pipeline import CodeMixPipeline
 
 pipeline = CodeMixPipeline()
-result = pipeline.analyze("yaar ye movie bahut amazing thi")
+result = pipeline.analyze("Ajeeb desh hai hamara, pizza tees minute mein pahuchne ki guarantee hai, lekin ambulance?")
 
-print(result.sentiment.label)      # positive
-print(result.stats)                # {'hindi_words': 4, 'english_words': 2, ...}
+print(result.sentiment.label)      # neutral
+print(result.stats)                # {'hindi_words': 7, 'english_words': 7, ...}
 for tw in result.tagged_words:
     print(f"{tw.word:15s} [{tw.lang}] ({tw.confidence:.2f})")
 ```
@@ -58,9 +58,9 @@ for tw in result.tagged_words:
 ### CLI
 
 ```bash
-codemix "bhai party mein bahut maza aaya, awesome food tha"
-codemix --json "aaj ka weather bahut pleasant hai"
-echo "bahut accha kaam kiya" | codemix --stdin
+codemix "Life is a race, if you don't run fast, you will be like a broken undaa"
+codemix --json "Shaadi is dal chawal for pachaas saal till you die, arre life mein thoda bahut keema pav bhi hona chahiye nah"
+echo "Ajeeb desh hai hamara, pizza tees minute mein pahuchne ki guarantee hai" | codemix --stdin
 ```
 
 ### REST API
@@ -71,71 +71,109 @@ uvicorn codemix.api:app --reload
 # Analyze text
 curl -X POST http://localhost:8000/analyze \
   -H "Content-Type: application/json" \
-  -d '{"text": "yaar ye movie bahut amazing thi"}'
+  -d '{"text": "Ajeeb desh hai hamara, pizza tees minute mein pahuchne ki guarantee hai, lekin ambulance?"}'
 
 # Language detection only
 curl -X POST http://localhost:8000/detect-language \
   -H "Content-Type: application/json" \
-  -d '{"text": "bhai aaj ka match dekha? India ne accha khela"}'
+  -d '{"text": "Shaadi is dal chawal for pachaas saal till you die"}'
 ```
 
 ## CLI Examples
 
-```bash
-$ codemix "yaar ye movie bahut amazing thi"
+> Examples use iconic Bollywood Hinglish dialogues - perfect test cases for code-mixing analysis.
 
-  Input:      yaar ye movie bahut amazing thi
-  Normalized: yaar ye movie bahut amazing thi
+**3 Idiots** - "Life is a race..."
+```bash
+$ codemix "Life is a race, if you don't run fast, you will be like a broken undaa"
+
+  Input:      Life is a race, if you don't run fast, you will be like a broken undaa
+  Normalized: Life is a race, if you don't run fast, you will be like a broken undaa
 
   Word-level language tags:
-    yaar            [hi]     (conf: 0.20)
-    ye              [en]     (conf: 0.16)
-    movie           [en]     (conf: 0.11)
-    bahut           [hi]     (conf: 0.11)
-    amazing         [en]     (conf: 0.10)
-    thi             [en]     (conf: 0.11)
+    Life            [en]     (conf: 0.12)
+    is              [en]     (conf: 0.07)
+    race            [en]     (conf: 0.13)
+    you             [en]     (conf: 0.02)
+    run             [en]     (conf: 0.06)
+    fast            [en]     (conf: 0.12)
+    broken          [en]     (conf: 0.10)
+    undaa           [hi]     (conf: 0.20)
 
-  Sentiment:  positive (score: +1.00)
+  Sentiment:  negative (score: -1.00)
 
-  Hindi words → Devanagari:
-    yaar            → यार
-    bahut           → बहुत
+  Hindi words -> Devanagari:
+    undaa           -> उन्दा
 
-  Stats: 2 Hindi, 4 English, 0 other | CMI: 0.33
+  Stats: 3 Hindi, 14 English, 3 other | CMI: 0.18
 ```
 
-JSON output for programmatic use:
-
+**3 Idiots** - "Ajeeb desh hai hamara..."
 ```bash
-$ codemix --json "ye gaana sunke bahut happy feel hua"
+$ codemix "Ajeeb desh hai hamara, pizza tees minute mein pahuchne ki guarantee hai, lekin ambulance?"
+
+  Input:      Ajeeb desh hai hamara, pizza tees minute mein pahuchne ki guarantee hai, lekin ambulance?
+  Normalized: Ajeeb desh hai hamara, pizza tees minute mein pahuchne ki guarantee hai, lekin ambulance?
+
+  Word-level language tags:
+    Ajeeb           [en]     (conf: 0.05)
+    desh            [hi]     (conf: 0.07)
+    hai             [hi]     (conf: 0.19)
+    hamara          [hi]     (conf: 0.24)
+    pizza           [hi]     (conf: 0.15)
+    tees            [en]     (conf: 0.12)
+    minute          [en]     (conf: 0.14)
+    pahuchne        [hi]     (conf: 0.13)
+    ki              [hi]     (conf: 0.18)
+    guarantee       [en]     (conf: 0.12)
+    hai             [hi]     (conf: 0.19)
+    lekin           [en]     (conf: 0.08)
+    ambulance       [en]     (conf: 0.12)
+
+  Sentiment:  neutral (score: +0.00)
+
+  Hindi words -> Devanagari:
+    desh -> देश  hai -> है  hamara -> हमर  pahuchne -> पहुच्ने  ki -> कि
+
+  Stats: 7 Hindi, 7 English, 3 other | CMI: 0.50
+```
+
+**Yeh Jawaani Hai Deewani** - JSON output:
+```bash
+$ codemix --json "Shaadi is dal chawal for pachaas saal till you die, arre life mein thoda bahut keema pav bhi hona chahiye nah"
 {
-  "original": "ye gaana sunke bahut happy feel hua",
+  "original": "Shaadi is dal chawal for pachaas saal till you die, ...",
   "tagged_words": [
-    {"word": "ye", "lang": "en", "confidence": 0.1624},
-    {"word": "gaana", "lang": "hi", "confidence": 0.3066},
-    {"word": "sunke", "lang": "en", "confidence": 0.1546},
+    {"word": "Shaadi", "lang": "hi", "confidence": 0.1825},
+    {"word": "is", "lang": "en", "confidence": 0.0702},
+    {"word": "dal", "lang": "en", "confidence": 0.0748},
+    {"word": "chawal", "lang": "hi", "confidence": 0.1404},
+    {"word": "for", "lang": "en", "confidence": 0.1156},
+    {"word": "pachaas", "lang": "hi", "confidence": 0.1582},
+    {"word": "saal", "lang": "hi", "confidence": 0.154},
+    {"word": "till", "lang": "en", "confidence": 0.1552},
+    {"word": "you", "lang": "en", "confidence": 0.0238},
+    {"word": "die", "lang": "en", "confidence": 0.136},
+    {"word": "thoda", "lang": "hi", "confidence": 0.1902},
     {"word": "bahut", "lang": "hi", "confidence": 0.1145},
-    {"word": "happy", "lang": "en", "confidence": 0.0887},
-    {"word": "feel", "lang": "en", "confidence": 0.0776},
-    {"word": "hua", "lang": "hi", "confidence": 0.1979}
+    {"word": "hona", "lang": "hi", "confidence": 0.2993},
+    {"word": "chahiye", "lang": "hi", "confidence": 0.1857}
   ],
-  "sentiment": {"label": "positive", "score": 1.0},
+  "sentiment": {"label": "neutral", "score": 0.0},
   "transliterations": [
-    {"original": "gaana", "devanagari": "गान"},
+    {"original": "Shaadi", "devanagari": "शादि"},
+    {"original": "chawal", "devanagari": "चवल"},
+    {"original": "pachaas", "devanagari": "पचास"},
+    {"original": "saal", "devanagari": "साल"},
     {"original": "bahut", "devanagari": "बहुत"},
-    {"original": "hua", "devanagari": "हुअ"}
+    {"original": "hona", "devanagari": "होन"},
+    {"original": "chahiye", "devanagari": "चहिये"}
   ],
   "stats": {
-    "total_words": 7, "hindi_words": 3, "english_words": 4,
-    "other": 0, "code_mixing_index": 0.4286
+    "total_words": 22, "hindi_words": 12, "english_words": 9,
+    "other": 1, "code_mixing_index": 0.4286
   }
 }
-```
-
-Pipe from stdin:
-
-```bash
-$ echo "bhai tu tension mat le, sab theek ho jayega" | codemix --stdin
 ```
 
 ## Language ID Evaluation
